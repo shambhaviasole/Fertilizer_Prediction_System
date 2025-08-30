@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout • FertilizerSys</title>
+  <style>
+    :root {
+      --bg:#0a0f1f;
+      --primary:#007bff;
+      --accent:#00eaff;
+      --success:#00ff66;
+      --white:#ffffff;
+    }
+    body {
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      background: radial-gradient(1000px 600px at 80% -10%, rgba(0,234,255,.2), transparent 60%),
+                  radial-gradient(800px 500px at -10% 120%, rgba(0,123,255,.15), transparent 60%),
+                  var(--bg);
+      color:var(--white);
+    }
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding:2.5rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow:0 8px 30px rgba(0,0,0,.35);
+      max-width:400px;
+      backdrop-filter: blur(6px);
+    }
+    h1 {
+      margin:0 0 1rem;
+      font-size:1.8rem;
+      font-weight:700;
+    }
+    p {
+      color:#cde2ff;
+      margin-bottom:2rem;
+    }
+    a.btn {
+      display:inline-block;
+      text-decoration:none;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color:#fff;
+      padding:0.9rem 1.5rem;
+      border-radius:14px;
+      font-weight:600;
+      transition: transform .1s ease, box-shadow .2s ease;
+      box-shadow:0 6px 15px rgba(0,123,255,.35);
+    }
+    a.btn:hover {
+      transform: translateY(-2px);
+      box-shadow:0 10px 20px rgba(0,123,255,.45);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🚪 You have been logged out</h1>
+    <p>Thank you for using <strong>FertilizerSys</strong>.  
+       You can login again anytime to access your dashboard.</p>
+    <a href="/login/" class="btn">🔑 Back to Login</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Failed</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('/static/Sustainable\ investing\ and\ how\ to\ align\ your\ investments\ with\ your\ values.jpeg') no-repeat center center/cover;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dark overlay to fade background */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10, 15, 31, 0.75); /* dark blue overlay */
+      z-index: 1;
+    }
+
+    .fail-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(8, 16, 37, 0.9);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+      max-width: 420px;
+      width: 100%;
+      border: 2px solid #2aa6ff;
+    }
+
+    .fail-icon {
+      font-size: 70px;
+      color: #e74c3c;
+      margin-bottom: 15px;
+      animation: shake 0.6s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .text-muted {
+      font-size: 0.95rem;
+      color: #00bfff !important;
+    }
+
+    .btn-try {
+      background: linear-gradient(135deg, #007bff, #00eaff);
+      border: none;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-try:hover {
+      background: linear-gradient(135deg, #00ff66, #2aa6ff);
+      transform: scale(1.07);
+    }
+  </style>
+</head>
+<body>
+  <div class="fail-box">
+    <div class="fail-icon">❌</div>
+    <h2>Login Failed</h2>
+    <p class="text-muted">
+      {% if message %} {{ message }} {% else %} Something went wrong. {% endif %}
+    </p>
+    {% if error %}
+      <p class="text-danger">{{ error }}</p>
+    {% endif %}
+    <a href="/login/" class="btn btn-try mt-3">Try Again</a>
+  </div>
+</body>
+</html>

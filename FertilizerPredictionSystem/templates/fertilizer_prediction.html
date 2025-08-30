@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fertilizer Prediction • Input Form</title>
+  <style>
+    :root{
+      --bg:#0a0f1f;       /* deep navy */
+      --primary:#007bff;  /* blue */
+      --accent:#00eaff;   /* cyan */
+      --success:#00ff66;  /* green */
+      --sky:#2aa6ff;      /* light blue */
+      --white:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color:var(--white);
+      background: radial-gradient(1200px 800px at 85% -10%, rgba(0,234,255,.2), transparent 60%),
+                  radial-gradient(1000px 600px at -10% 120%, rgba(42,166,255,.15), transparent 60%),
+                  var(--bg);
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      padding:2rem;
+    }
+    .card{
+      width:min(980px,100%);
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      border-radius:24px;
+      overflow:hidden;
+      backdrop-filter: blur(6px);
+    }
+    .card header{
+      padding:1.25rem 1.25rem 0.75rem;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    .title{font-size:1.5rem;margin:0;font-weight:700}
+    .sub{color:#cfe6ff;margin:.35rem 0 0;font-size:.95rem}
+    form{padding:1.25rem}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap:1rem;
+    }
+    label{display:block;font-weight:600;margin:0 0 .35rem}
+    .field{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.8rem .9rem;color:var(--white);width:100%;outline:none}
+    .field:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,234,255,.25)}
+    .row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+    .btn{
+      appearance:none; cursor:pointer; border:0; font-weight:700; letter-spacing:.2px;
+      padding:.9rem 1.15rem; border-radius:14px; transition:transform .05s ease, box-shadow .2s ease;
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--sky)); color:#fff; box-shadow:0 6px 18px rgba(0,123,255,.35)}
+    .btn-primary:active{transform:translateY(1px)}
+    .btn-reset{background:transparent;border:1px solid rgba(255,255,255,.2);color:#e2e8f0}
+
+    .result{
+      margin:1rem 1.25rem 1.25rem; padding:1rem; border-radius:14px;
+      background:rgba(0,255,102,.08); border:1px solid rgba(0,255,102,.35);
+    }
+    .result p{margin:.2rem 0}
+    .footer{padding:0 1.25rem 1.25rem;color:#b9d6ff;font-size:.86rem}
+    .badge{display:inline-block;background:rgba(0,234,255,.18); color:#dff7ff; border:1px solid rgba(0,234,255,.35); padding:.25rem .5rem; border-radius:999px; font-size:.75rem; margin-left:.35rem}
+    .req{color:#ffbdbd; font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <h1 class="title">Fertilizer Prediction — Input Form<span class="badge">Decision Tree</span></h1>
+      <p class="sub">Enter the features and get a fertilizer recommendation using your trained model.</p>
+    </header>
+
+    <form method="POST" action="/fertilizer_prediction/">
+      {% csrf_token %}
+      <div class="grid">
+        <div>
+          <label for="Temparature">Temperature (°C)</label>
+          <input class="field" type="number" id="Temparature" name="Temparature" step="0.1" required placeholder="e.g., 24" />
+        </div>
+        <div>
+          <label for="Humidity">Humidity (%)</label>
+          <input class="field" type="number" id="Humidity" name="Humidity" min="0" max="100" step="1" required placeholder="e.g., 70" />
+        </div>
+        <div>
+          <label for="Moisture">Moisture (%)</label>
+          <input class="field" type="number" id="Moisture" name="Moisture" min="0" max="100" step="1" required placeholder="e.g., 78" />
+        </div>
+        <div>
+          <label for="Soil_Type">Soil Type (encoded)</label>
+          <input class="field" type="number" id="Soil_Type" name="Soil_Type" min="0" step="1" required placeholder="e.g., 3" />
+        </div>
+        <div>
+          <label for="Crop_Type">Crop Type (encoded)</label>
+          <input class="field" type="number" id="Crop_Type" name="Crop_Type" min="0" step="1" required placeholder="e.g., 7" />
+        </div>
+        <div>
+          <label for="Nitrogen">Nitrogen (N)</label>
+          <input class="field" type="number" id="Nitrogen" name="Nitrogen" min="0" step="1" required placeholder="e.g., 56" />
+        </div>
+        <div>
+          <label for="Potassium">Potassium (K)</label>
+          <input class="field" type="number" id="Potassium" name="Potassium" min="0" step="1" required placeholder="e.g., 20" />
+        </div>
+        <div>
+          <label for="Phosphorous">Phosphorous (P)</label>
+          <input class="field" type="number" id="Phosphorous" name="Phosphorous" min="0" step="1" required placeholder="e.g., 17" />
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:1.25rem">
+        <button class="btn btn-primary" type="submit">Predict Fertilizer</button>
+        <button class="btn btn-reset" type="reset">Reset</button>
+        <span class="req">All fields are required.</span>
+        
+      </div>
+    </form>
+
+    <div class="row" style="margin-top:1rem ">
+  <a href="/dashboard/" class="btn btn-reset">⬅ Back to Dashboard</a>
+</div>
+
+    {% if prediction %}
+    <div class="result">
+      <p><strong>Predicted Fertilizer:</strong> 🌱 {{ prediction }}</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fertilizer Prediction System</title>
+  
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Internal CSS -->
+
+  <style>
+ body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0a0f1f 60%, #0d152c 100%);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  background: rgba(10, 15, 31, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 234, 255, 0.2);
+}
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #00eaff !important;
+  text-shadow: 0px 0px 10px #007bff;
+  letter-spacing: 1px;
+}
+.nav-link {
+  color: #ffffff !important;
+  transition: 0.3s;
+  font-weight: 500;
+}
+.nav-link:hover {
+  color: #00ff66 !important;
+  text-shadow: 0 0 8px #00ff66;
+}
+
+/* Buttons */
+.btn-login, .btn-register {
+  border-radius: 25px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  margin-left: 12px;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.btn-login {
+  background: linear-gradient(45deg, #007bff, #2adcff);
+  color: #ffffff;
+  box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.5);
+}
+.btn-login:hover {
+  background: linear-gradient(45deg, #2aa6ff, #171f55);
+  transform: scale(1.08);
+  box-shadow: 0px 0px 20px rgba(0, 234, 255, 0.8);
+}
+.btn-register {
+  background: linear-gradient(45deg, #02e95f, #2aa6ff);
+  color: #0a0f1f;
+  box-shadow: 0px 0px 12px rgba(0, 255, 102, 0.5);
+}
+.btn-register:hover {
+  background: linear-gradient(45deg, #00eaff, #00ff66);
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0px 0px 20px rgba(0, 255, 102, 0.8);
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: url('/static/bg_main.jpeg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  color: #ffffff;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24, 28, 39, 0.8);
+  backdrop-filter: blur(2px);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 2s ease-in-out;
+}
+.hero h1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  transition: transform 0.5s, color 0.5s;
+  color: #ffffff;
+  text-shadow: 0px 0px 5px #007bff, 0px 0px 5px #00eaff;
+}
+.hero h1:hover {
+  transform: scale(1.12);
+  color: #ffffff;
+  /* text-shadow: 0px 0px 5px #00ff66, 0px 0px 5px #2aa6ff; */
+}
+.hero p {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  color: #e0f7ff;
+  letter-spacing: 0.5px;
+}
+.btn-custom {
+  margin-top: 25px;
+  padding: 14px 35px;
+  border-radius: 35px;
+  background: linear-gradient(45deg, #007bff, #00eaff);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 15px rgba(0, 234, 255, 0.6);
+}
+.btn-custom:hover {
+  background: linear-gradient(45deg, #00ff66, #2aa6ff);
+  color: #0a0f1f;
+  transform: scale(1.1);
+  box-shadow: 0px 0px 25px rgba(0, 255, 102, 0.8);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  /* Features Section */
+  .features {
+    padding: 60px 20px;
+    background: #0a0f1f;
+    color: #ffffff;
+  }
+  .feature-card {
+    transition: transform 0.4s, box-shadow 0.4s;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0a0f1f;
+    border: 1px solid #007bff;
+    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.2);
+  }
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 25px rgba(0, 234, 255, 0.5);
+  }
+  .feature-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #00eaff;
+  }
+  .card-title {
+    color: #00eaff;
+  }
+  .card-text {
+    color: #ffffff;
+  }
+
+  /* Footer Layout */
+footer {
+  background: #0a0f1f;
+  color: #ffffff;
+  padding: 30px 20px 15px;
+  font-size: 0.9rem;
+  border-top: 2px solid #2aa6ff;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: auto;
+  gap: 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h4 {
+  color: #00eaff;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.footer-section p,
+.footer-section a {
+  color: #ffffff;
+  opacity: 0.85;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+  color: #00ff66;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #2aa6ff;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">🌱 FertilizerSys</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav me-3">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#footer">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        </ul>
+        <a href="/register/" class="btn btn-register">Register</a>
+        <a href="/login/" class="btn btn-login">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Fertilizer Prediction System</h1>
+      <h2>🌱</h2>
+      <p>Smart AI-driven solution to recommend the right fertilizer for your crops</p>
+      <a href="#features" class="btn btn-custom">Explore Features</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Our Features</h2>
+        <p>Why choose our system?</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card feature-card shadow">
+            <img src="/static/f1.jpeg/" alt="Crop">
+            <div class="card-body">
+              <h5 class="card-title">Crop Based Prediction</h5>
+              <p class="card-text">Get fertilizer suggestions tailored to your crop type and soil conditions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card shadow">
+            <img src="/static/f3.jpeg/" alt="AI">
+            <div class="card-body">
+              <h5 class="card-title">AI-Powered Analysis</h5>
+              <p class="card-text">Leverages machine learning to ensure accurate and efficient recommendations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card shadow">
+            <img src="/static/f2.jpeg/" alt="Eco">
+            <div class="card-body">
+              <h5 class="card-title">Eco-Friendly Choices</h5>
+              <p class="card-text">Promotes sustainable farming with balanced fertilizer usage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <div class="footer-container">
+    <!-- Left: About -->
+    <div class="footer-section">
+      <h4>About</h4>
+      <p>AI-driven fertilizer recommendation system helping farmers improve crop yield with data-driven insights.</p>
+    </div>
+
+    <!-- Middle: Quick Links -->
+    <div class="footer-section" id="footer">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/">🏠 Home</a></li>
+        <li><a href="/fertilizer_prediction/">🌱 Prediction</a></li>
+        <li><a href="/about/">ℹ️ About Us</a></li>
+        <li><a href="/contact/">📩 Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Right: Contact -->
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>📍 Location: India</p>
+      <p>📧 Email: support@fertilizer-ai.com</p>
+      <p>📞 Phone: +91 98765 43210</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2024 Fertilizer Prediction System | Designed with ❤️ | All Rights Reserved</p>
+  </div>
+</footer>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
