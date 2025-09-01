@@ -221,12 +221,4 @@ This project is licensed under the **MIT License**. You are free to use, modify,
 
 ---
 
-## 👩‍💻 Author
 
-Developed by **Shambhavi Asole** ✨
-
----
-
-👉 I can also **generate the `requirements.txt`** with all necessary packages (`django, scikit-learn, pandas, numpy, joblib`) so your project is fully ready for GitHub.
-
-Do you want me to **create that `requirements.txt` file** for you now?
