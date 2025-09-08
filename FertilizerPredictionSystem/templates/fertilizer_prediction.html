@@ -47,7 +47,7 @@
       gap:1rem;
     }
     label{display:block;font-weight:600;margin:0 0 .35rem}
-    .field{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.8rem .9rem;color:var(--white);width:100%;outline:none}
+    .field{background:rgba(255, 255, 255, 0.059);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.8rem .9rem;color:var(--white);width:100%;outline:none}
     .field:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,234,255,.25)}
     .row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
     .btn{
@@ -66,6 +66,201 @@
     .footer{padding:0 1.25rem 1.25rem;color:#b9d6ff;font-size:.86rem}
     .badge{display:inline-block;background:rgba(0,234,255,.18); color:#dff7ff; border:1px solid rgba(0,234,255,.35); padding:.25rem .5rem; border-radius:999px; font-size:.75rem; margin-left:.35rem}
     .req{color:#ffbdbd; font-size:.9rem}
+
+    .weather-wrap {
+  width: 100%;
+  display: grid;
+  gap: 18px;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+
+.input {
+  position: relative;
+}
+
+
+input[type="text"] {
+  width: 90%;
+  padding: 14px 44px 14px 14px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #0b1732;
+  background: rgba(255,255,255,.95);
+}
+
+.btn-weather {
+  border: none;
+  border-radius: 14px;
+  padding: 14px 18px;
+  cursor: pointer;
+  font-weight: 300;
+  background: #00d1dc;
+  color: #fff;
+  transition: transform .1s ease;
+}
+
+.btn-weather:active {
+  transform: translateY(1px);
+}
+
+.secondary {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.7);
+}
+
+.results {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.now {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.now .icon {
+  width: 88px;
+  height: 88px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.pill {
+  background: rgba(255,255,255,.2);
+  padding: 12px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.pill b {
+  display: block;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.pill span {
+  font-size: .9rem;
+  color: #eef;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.4);
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin-left: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.weather-container {
+  position: fixed;
+  bottom: 90px;
+  right: 90px;
+  width: 280px;
+  background: #0a1a3b;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(31,218,255,.3);
+  padding: 15px;
+  z-index: 998;
+  font-size: .85rem;
+}
+
+.weather-container h3 {
+  font-size: 1.1rem;
+  color: #00eaff;
+  margin-bottom: 12px;
+  text-align: center;
+  border-bottom: 2px solid #2aa6ff;
+  padding-bottom: 6px;
+}
+
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,.2);
+  z-index: 1000;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+    /* --- Chatbot CSS --- */
+    .chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      background-color: #0a1a3b;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(31, 218, 255, 0.3);
+      overflow: hidden;
+      z-index: 999;
+    }
+    .hidden { display: none; }
+    .chat-header { background-color: #3a3a3a; color: #fff; padding: 15px; text-align: center; }
+    .chat-messages { flex-grow: 1; padding: 20px; overflow-y: auto; }
+    .message { display: flex; align-items: flex-start; margin-bottom: 15px; }
+    .message-content { padding: 10px; border-radius: 5px; max-width: 70%; }
+    .user-message { flex-direction: row-reverse; }
+    .user-message .message-content { background-color: #4a90e2; margin-right: 10px; }
+    .bot-message .message-content { background-color: #3a3a3a; margin-left: 10px; }
+    .profile-image { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+    .chat-input-container { display: flex; padding: 15px; background-color: #2a2a2a; }
+    #user-input { flex-grow: 1; padding: 10px; border: 1px solid #4a4a4a; border-radius: 5px; font-size: 1rem; background-color: #3a3a3a; color: #e0e0e0; outline: none; }
+    #send-button { padding: 10px 20px; background-color: #4a90e2; color: #fff; border: none; border-radius: 5px; margin-left: 10px; cursor: pointer; font-size: 1rem; }
+    
+
   </style>
 </head>
 <body>
@@ -80,40 +275,63 @@
       <div class="grid">
         <div>
           <label for="Temparature">Temperature (°C)</label>
-          <input class="field" type="number" id="Temparature" name="Temparature" step="0.1" required placeholder="e.g., 24" />
+          <input class="field" type="number" id="Temparature" name="Temparature" step="0.1" required placeholder="e.g., 24°C" />
         </div>
         <div>
           <label for="Humidity">Humidity (%)</label>
-          <input class="field" type="number" id="Humidity" name="Humidity" min="0" max="100" step="1" required placeholder="e.g., 70" />
+          <input class="field" type="number" id="Humidity" name="Humidity" min="0" max="100" step="1" required placeholder="e.g., 70%" />
         </div>
         <div>
           <label for="Moisture">Moisture (%)</label>
-          <input class="field" type="number" id="Moisture" name="Moisture" min="0" max="100" step="1" required placeholder="e.g., 78" />
+          <input class="field" type="number" id="Moisture" name="Moisture" min="0" max="100" step="1" required placeholder="e.g., 65%" />
         </div>
         <div>
-          <label for="Soil_Type">Soil Type (encoded)</label>
-          <input class="field" type="number" id="Soil_Type" name="Soil_Type" min="0" step="1" required placeholder="e.g., 3" />
+          <label for="Soil_Type">Soil Type</label>
+          <select class="field" type="number" id="Soil_Type" name="Soil_Type" required 
+          style="color: white ; background-color: #293140;">
+            <option value="">Select Type</option>
+            <option value="0">Sandy</option>
+            <option value="1">Loamy</option>
+            <option value="2">Black</option>
+            <option value="3">Red</option>
+            <option value="4">Clayey</option>
+          </select>
         </div>
         <div>
-          <label for="Crop_Type">Crop Type (encoded)</label>
-          <input class="field" type="number" id="Crop_Type" name="Crop_Type" min="0" step="1" required placeholder="e.g., 7" />
+          <label for="Crop_Type">Crop Type</label>
+          <select class="field" type="number" id="Crop_Type" name="Crop_Type" required
+          style="color: white ; background-color: #293140;">
+            <option value="">Select Type</option>
+            <option value="0">Maize</option>
+            <option value="1">Sugarcane</option>
+            <option value="2">Cotton</option>
+            <option value="3">Tobacco</option>
+            <option value="4">Paddy</option>
+            <option value="5">Barley</option>
+            <option value="6">Wheat</option>
+            <option value="7">Millets</option>
+            <option value="8">Oil seeds</option>
+            <option value="9">Pulses</option>
+            <option value="10">Ground Nuts</option>
+          </select>
         </div>
         <div>
           <label for="Nitrogen">Nitrogen (N)</label>
-          <input class="field" type="number" id="Nitrogen" name="Nitrogen" min="0" step="1" required placeholder="e.g., 56" />
+          <input class="field" type="number" id="Nitrogen" name="Nitrogen" min="0" step="1" required placeholder="e.g., 56g" />
         </div>
         <div>
           <label for="Potassium">Potassium (K)</label>
-          <input class="field" type="number" id="Potassium" name="Potassium" min="0" step="1" required placeholder="e.g., 20" />
+          <input class="field" type="number" id="Potassium" name="Potassium" min="0" step="1" required placeholder="e.g., 20g" />
         </div>
         <div>
           <label for="Phosphorous">Phosphorous (P)</label>
-          <input class="field" type="number" id="Phosphorous" name="Phosphorous" min="0" step="1" required placeholder="e.g., 17" />
+          <input class="field" type="number" id="Phosphorous" name="Phosphorous" min="0" step="1" required placeholder="e.g., 17g" />
         </div>
       </div>
 
       <div class="row" style="margin-top:1.25rem">
         <button class="btn btn-primary" type="submit">Predict Fertilizer</button>
+        <button type="button" id="use-weather" class="btn btn-primary">Use Live Weather</button>
         <button class="btn btn-reset" type="reset">Reset</button>
         <span class="req">All fields are required.</span>
         
@@ -130,5 +348,179 @@
     </div>
     {% endif %}
   </div>
+
+<!-- Floating Weather -->
+<div class="weather-container hidden" id="weather">
+  <h3>🌤 Live Weather</h3>
+  <div class="weather-wrap">
+    <div class="search">
+      <div class="input">
+        <input id="q" type="text" placeholder="Enter location..." list="popular-cities" />
+        <datalist id="popular-cities">
+          <option value="Delhi"></option>
+          <option value="Mumbai"></option>
+          <option value="London"></option>
+          <option value="New York"></option>
+          <option value="Tokyo"></option>
+          <option value="Paris"></option>
+        </datalist>
+      </div>
+      <button id="go" class="btn-weather">Check Weather</button>
+    </div>
+    <div class="row">
+      <button id="geo" class="btn-weather secondary">📍 Use My Location</button>
+      <div id="spin" class="spinner"></div>
+    </div>
+  </div>
+  <div id="out" class="results">
+    <p class="hint">Result will appear here.</p>
+  </div>
+</div>
+
+<!-- Toggle Button -->
+<button id="weather-toggle" class="chat-toggle" style="right: 90px;">🌤</button>
+
+
+
+<!-- Floating Chatbot -->
+  <button id="chat-toggle" class="chat-toggle">💬</button>
+  <div class="chat-container hidden" id="chat-container">
+    <div class="chat-header"><h1>Chatbot ZiKi 🤖</h1></div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-container">
+      <input type="text" id="user-input" placeholder="Type your message...">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+
+<script>
+
+  document.getElementById("weather-toggle").addEventListener("click", () => {
+  document.getElementById("weather").classList.toggle("hidden");
+});
+
+const W_API_KEY = 'd7acdd2eed3d467eb82175524252608';
+const BASE = 'http://api.weatherapi.com/v1/current.json';
+const elQ = document.getElementById('q'),
+      elGo = document.getElementById('go'),
+      elOut = document.getElementById('out'),
+      elSpin = document.getElementById('spin'),
+      elGeo = document.getElementById('geo');
+
+const showSpinner = (on = true) => {
+  elSpin.style.display = on ? 'inline-block' : 'none';
+};
+
+async function fetchWeather(query) {
+  const url = `${BASE}?key=${W_API_KEY}&q=${encodeURIComponent(query)}&aqi=yes`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (data && data.error) throw new Error(data.error.message);
+  return data;
+}
+
+function template(data) {
+  const { location, current } = data;
+  return `
+    <div class="now">
+      <img class="icon" src="https:${current.condition.icon}" alt="${current.condition.text}" />
+      <div>
+        <h2>${location.name}, ${location.country}</h2>
+        <div>${current.condition.text}</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="pill"><b>${current.temp_c}°C</b><span>Temperature</span></div>
+      <div class="pill"><b>${current.humidity}%</b><span>Humidity</span></div>
+      <div class="pill"><b>${current.wind_kph}%</b><span>Moisture</span></div>
+    </div>
+  `;
+}
+
+async function handleSearch(query) {
+  if (!query) return;
+  showSpinner(true);
+  elOut.innerHTML = '<p class="hint">Fetching live weather…</p>';
+  try {
+    const data = await fetchWeather(query);
+    elOut.innerHTML = template(data);
+  } catch (err) {
+    elOut.innerHTML = `<p class="error">${err.message}</p>`;
+  } finally {
+    showSpinner(false);
+  }
+}
+
+elGo.addEventListener('click', () => handleSearch(elQ.value.trim()));
+elQ.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSearch(elQ.value.trim()); });
+elGeo.addEventListener('click', () => {
+  navigator.geolocation?.getCurrentPosition(
+    pos => handleSearch(`${pos.coords.latitude},${pos.coords.longitude}`),
+    err => elOut.innerHTML = `<p class="error">${err.message}</p>`
+  );
+});
+
+ /* --- Chatbot JS --- */
+    const API_KEY = "AIzaSyDPIDr5YfIB8AutCXhp4_W8LKqMWWWIi-g";  
+    const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
+    const chatMessages = document.getElementById('chat-messages'), userInput = document.getElementById('user-input'),
+          sendButton = document.getElementById('send-button');
+    async function generateResponse(prompt) {
+      const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+      });
+      const data = await response.json(); return data.candidates[0].content.parts[0].text;
+    }
+    function addMessage(message, isUser) {
+      const msg = document.createElement('div'); msg.classList.add('message', isUser ? 'user-message' : 'bot-message');
+      const profile = document.createElement('img'); profile.classList.add('profile-image'); profile.src = isUser ? "/static/starboy.jpeg" : "/static/AI.jpeg";
+      const content = document.createElement('div'); content.classList.add('message-content'); content.textContent = message;
+      msg.appendChild(profile); msg.appendChild(content); chatMessages.appendChild(msg); chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    async function handleUserInput() {
+      const text = userInput.value.trim(); if (!text) return;
+      addMessage(text, true); userInput.value = ""; sendButton.disabled = true; userInput.disabled = true;
+      try { addMessage(await generateResponse(text), false); }
+      catch { addMessage("⚠️ Error: Could not get response. Try again!", false); }
+      finally { sendButton.disabled = false; userInput.disabled = false; }
+    }
+    sendButton.addEventListener("click", handleUserInput);
+    userInput.addEventListener("keypress", e => { if (e.key === "Enter") handleUserInput(); });
+    document.getElementById("chat-toggle").addEventListener("click", () => {
+      document.getElementById("chat-container").classList.toggle("hidden");
+    });
+
+
+
+    const useWeatherBtn = document.getElementById('use-weather');
+
+useWeatherBtn.addEventListener('click', () => {
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const query = `${pos.coords.latitude},${pos.coords.longitude}`;
+    showSpinner(true);
+    elOut.innerHTML = '<p class="hint">Fetching live weather…</p>';
+
+    try {
+      const data = await fetchWeather(query);
+      elOut.innerHTML = template(data);
+
+      // Auto-fill the form fields
+      document.getElementById('Temparature').value = data.current.temp_c;
+      document.getElementById('Humidity').value = data.current.humidity;
+      document.getElementById('Moisture').value = data.current.wind_kph;
+    } catch (err) {
+      elOut.innerHTML = `<p class="error">${err.message}</p>`;
+    } finally {
+      showSpinner(false);
+    }
+  }, (err) => {
+    elOut.innerHTML = `<p class="error">Location error: ${err.message}</p>`;
+  });
+});
+
+
+</script>
 </body>
 </html>
